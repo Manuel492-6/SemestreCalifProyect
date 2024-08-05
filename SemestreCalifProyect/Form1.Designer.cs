@@ -47,10 +47,15 @@
             radAscendente = new RadioButton();
             btnEliminarSemestre = new Button();
             btnEliminarMateria = new Button();
+            tabOrganizador = new TabControl();
+            tabDatos = new TabPage();
+            tabArchivo = new TabPage();
             grpDatosSemestre.SuspendLayout();
             grpMateria.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgtDatosMaterias).BeginInit();
             grpOrden.SuspendLayout();
+            tabOrganizador.SuspendLayout();
+            tabDatos.SuspendLayout();
             SuspendLayout();
             // 
             // grpDatosSemestre
@@ -58,18 +63,21 @@
             grpDatosSemestre.Controls.Add(btnAgregarSemestre);
             grpDatosSemestre.Controls.Add(cboNumSemestre);
             grpDatosSemestre.Controls.Add(label1);
-            grpDatosSemestre.Location = new Point(30, 21);
+            grpDatosSemestre.Location = new Point(6, 24);
+            grpDatosSemestre.Margin = new Padding(3, 2, 3, 2);
             grpDatosSemestre.Name = "grpDatosSemestre";
-            grpDatosSemestre.Size = new Size(430, 95);
+            grpDatosSemestre.Padding = new Padding(3, 2, 3, 2);
+            grpDatosSemestre.Size = new Size(376, 71);
             grpDatosSemestre.TabIndex = 0;
             grpDatosSemestre.TabStop = false;
             grpDatosSemestre.Text = "Datos Semestre";
             // 
             // btnAgregarSemestre
             // 
-            btnAgregarSemestre.Location = new Point(314, 15);
+            btnAgregarSemestre.Location = new Point(275, 11);
+            btnAgregarSemestre.Margin = new Padding(3, 2, 3, 2);
             btnAgregarSemestre.Name = "btnAgregarSemestre";
-            btnAgregarSemestre.Size = new Size(94, 69);
+            btnAgregarSemestre.Size = new Size(82, 52);
             btnAgregarSemestre.TabIndex = 2;
             btnAgregarSemestre.Text = "Agregar Semestre";
             btnAgregarSemestre.UseVisualStyleBackColor = true;
@@ -80,17 +88,18 @@
             cboNumSemestre.DropDownStyle = ComboBoxStyle.DropDownList;
             cboNumSemestre.FormattingEnabled = true;
             cboNumSemestre.Items.AddRange(new object[] { "1", "2", "3", "4", "5", "6", "7", "8", "9" });
-            cboNumSemestre.Location = new Point(167, 39);
+            cboNumSemestre.Location = new Point(146, 29);
+            cboNumSemestre.Margin = new Padding(3, 2, 3, 2);
             cboNumSemestre.Name = "cboNumSemestre";
-            cboNumSemestre.Size = new Size(129, 28);
+            cboNumSemestre.Size = new Size(113, 23);
             cboNumSemestre.TabIndex = 1;
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(10, 39);
+            label1.Location = new Point(9, 29);
             label1.Name = "label1";
-            label1.Size = new Size(149, 20);
+            label1.Size = new Size(118, 15);
             label1.TabIndex = 0;
             label1.Text = "Numero de Semestre";
             // 
@@ -101,18 +110,21 @@
             grpMateria.Controls.Add(txtNombreMateria);
             grpMateria.Controls.Add(label3);
             grpMateria.Controls.Add(label2);
-            grpMateria.Location = new Point(30, 139);
+            grpMateria.Location = new Point(6, 125);
+            grpMateria.Margin = new Padding(3, 2, 3, 2);
             grpMateria.Name = "grpMateria";
-            grpMateria.Size = new Size(430, 174);
+            grpMateria.Padding = new Padding(3, 2, 3, 2);
+            grpMateria.Size = new Size(376, 130);
             grpMateria.TabIndex = 1;
             grpMateria.TabStop = false;
             grpMateria.Text = "Datos Materia";
             // 
             // btnAgregarMateria
             // 
-            btnAgregarMateria.Location = new Point(118, 119);
+            btnAgregarMateria.Location = new Point(103, 89);
+            btnAgregarMateria.Margin = new Padding(3, 2, 3, 2);
             btnAgregarMateria.Name = "btnAgregarMateria";
-            btnAgregarMateria.Size = new Size(193, 43);
+            btnAgregarMateria.Size = new Size(169, 32);
             btnAgregarMateria.TabIndex = 4;
             btnAgregarMateria.Text = "Agregar Materia";
             btnAgregarMateria.UseVisualStyleBackColor = true;
@@ -120,43 +132,46 @@
             // 
             // txtCalificacion
             // 
-            txtCalificacion.Location = new Point(207, 76);
+            txtCalificacion.Location = new Point(181, 57);
+            txtCalificacion.Margin = new Padding(3, 2, 3, 2);
             txtCalificacion.Name = "txtCalificacion";
-            txtCalificacion.Size = new Size(89, 27);
+            txtCalificacion.Size = new Size(78, 23);
             txtCalificacion.TabIndex = 3;
             // 
             // txtNombreMateria
             // 
-            txtNombreMateria.Location = new Point(173, 33);
+            txtNombreMateria.Location = new Point(151, 25);
+            txtNombreMateria.Margin = new Padding(3, 2, 3, 2);
             txtNombreMateria.Name = "txtNombreMateria";
-            txtNombreMateria.Size = new Size(235, 27);
+            txtNombreMateria.Size = new Size(206, 23);
             txtNombreMateria.TabIndex = 2;
             // 
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(19, 76);
+            label3.Location = new Point(17, 57);
             label3.Name = "label3";
-            label3.Size = new Size(178, 20);
+            label3.Size = new Size(140, 15);
             label3.TabIndex = 1;
             label3.Text = "Calificacion de la materia";
             // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(16, 36);
+            label2.Location = new Point(14, 27);
             label2.Name = "label2";
-            label2.Size = new Size(156, 20);
+            label2.Size = new Size(122, 15);
             label2.TabIndex = 0;
             label2.Text = "Nombre de la materia";
             // 
             // lstSemestres
             // 
             lstSemestres.FormattingEnabled = true;
-            lstSemestres.ItemHeight = 20;
-            lstSemestres.Location = new Point(513, 44);
+            lstSemestres.ItemHeight = 15;
+            lstSemestres.Location = new Point(458, 35);
+            lstSemestres.Margin = new Padding(3, 2, 3, 2);
             lstSemestres.Name = "lstSemestres";
-            lstSemestres.Size = new Size(258, 244);
+            lstSemestres.Size = new Size(226, 184);
             lstSemestres.Sorted = true;
             lstSemestres.TabIndex = 2;
             lstSemestres.Click += lstSemestres_Click;
@@ -168,12 +183,13 @@
             dgtDatosMaterias.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgtDatosMaterias.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgtDatosMaterias.Columns.AddRange(new DataGridViewColumn[] { Nombre, Calificacion });
-            dgtDatosMaterias.Location = new Point(30, 360);
+            dgtDatosMaterias.Location = new Point(15, 273);
+            dgtDatosMaterias.Margin = new Padding(3, 2, 3, 2);
             dgtDatosMaterias.Name = "dgtDatosMaterias";
             dgtDatosMaterias.ReadOnly = true;
             dgtDatosMaterias.RowHeadersWidth = 51;
             dgtDatosMaterias.RowTemplate.Height = 29;
-            dgtDatosMaterias.Size = new Size(439, 204);
+            dgtDatosMaterias.Size = new Size(384, 153);
             dgtDatosMaterias.TabIndex = 3;
             // 
             // Nombre
@@ -194,9 +210,11 @@
             // 
             grpOrden.Controls.Add(radDescendente);
             grpOrden.Controls.Add(radAscendente);
-            grpOrden.Location = new Point(521, 347);
+            grpOrden.Location = new Point(458, 242);
+            grpOrden.Margin = new Padding(3, 2, 3, 2);
             grpOrden.Name = "grpOrden";
-            grpOrden.Size = new Size(250, 125);
+            grpOrden.Padding = new Padding(3, 2, 3, 2);
+            grpOrden.Size = new Size(219, 94);
             grpOrden.TabIndex = 4;
             grpOrden.TabStop = false;
             grpOrden.Text = "Orden De La Calificacion";
@@ -204,9 +222,10 @@
             // radDescendente
             // 
             radDescendente.AutoSize = true;
-            radDescendente.Location = new Point(13, 78);
+            radDescendente.Location = new Point(11, 58);
+            radDescendente.Margin = new Padding(3, 2, 3, 2);
             radDescendente.Name = "radDescendente";
-            radDescendente.Size = new Size(116, 24);
+            radDescendente.Size = new Size(93, 19);
             radDescendente.TabIndex = 1;
             radDescendente.TabStop = true;
             radDescendente.Text = "Descendente";
@@ -216,9 +235,10 @@
             // 
             radAscendente.AutoSize = true;
             radAscendente.Checked = true;
-            radAscendente.Location = new Point(13, 31);
+            radAscendente.Location = new Point(11, 23);
+            radAscendente.Margin = new Padding(3, 2, 3, 2);
             radAscendente.Name = "radAscendente";
-            radAscendente.Size = new Size(107, 24);
+            radAscendente.Size = new Size(87, 19);
             radAscendente.TabIndex = 0;
             radAscendente.TabStop = true;
             radAscendente.Text = "Ascendente";
@@ -226,9 +246,10 @@
             // 
             // btnEliminarSemestre
             // 
-            btnEliminarSemestre.Location = new Point(522, 494);
+            btnEliminarSemestre.Location = new Point(458, 353);
+            btnEliminarSemestre.Margin = new Padding(3, 2, 3, 2);
             btnEliminarSemestre.Name = "btnEliminarSemestre";
-            btnEliminarSemestre.Size = new Size(232, 29);
+            btnEliminarSemestre.Size = new Size(203, 22);
             btnEliminarSemestre.TabIndex = 5;
             btnEliminarSemestre.Text = "Eliminar Semestre";
             btnEliminarSemestre.UseVisualStyleBackColor = true;
@@ -236,26 +257,59 @@
             // 
             // btnEliminarMateria
             // 
-            btnEliminarMateria.Location = new Point(522, 535);
+            btnEliminarMateria.Location = new Point(458, 390);
+            btnEliminarMateria.Margin = new Padding(3, 2, 3, 2);
             btnEliminarMateria.Name = "btnEliminarMateria";
-            btnEliminarMateria.Size = new Size(232, 29);
+            btnEliminarMateria.Size = new Size(203, 22);
             btnEliminarMateria.TabIndex = 6;
             btnEliminarMateria.Text = "Eliminar Materia";
             btnEliminarMateria.UseVisualStyleBackColor = true;
             btnEliminarMateria.Click += btnEliminarMateria_Click;
             // 
+            // tabOrganizador
+            // 
+            tabOrganizador.Controls.Add(tabDatos);
+            tabOrganizador.Controls.Add(tabArchivo);
+            tabOrganizador.Location = new Point(12, 12);
+            tabOrganizador.Name = "tabOrganizador";
+            tabOrganizador.SelectedIndex = 0;
+            tabOrganizador.Size = new Size(727, 483);
+            tabOrganizador.TabIndex = 7;
+            // 
+            // tabDatos
+            // 
+            tabDatos.Controls.Add(grpDatosSemestre);
+            tabDatos.Controls.Add(btnEliminarMateria);
+            tabDatos.Controls.Add(lstSemestres);
+            tabDatos.Controls.Add(btnEliminarSemestre);
+            tabDatos.Controls.Add(grpMateria);
+            tabDatos.Controls.Add(grpOrden);
+            tabDatos.Controls.Add(dgtDatosMaterias);
+            tabDatos.Location = new Point(4, 24);
+            tabDatos.Name = "tabDatos";
+            tabDatos.Padding = new Padding(3);
+            tabDatos.Size = new Size(719, 455);
+            tabDatos.TabIndex = 0;
+            tabDatos.Text = "Datos";
+            tabDatos.UseVisualStyleBackColor = true;
+            // 
+            // tabArchivo
+            // 
+            tabArchivo.Location = new Point(4, 24);
+            tabArchivo.Name = "tabArchivo";
+            tabArchivo.Padding = new Padding(3);
+            tabArchivo.Size = new Size(719, 455);
+            tabArchivo.TabIndex = 1;
+            tabArchivo.Text = "Archivo Propiedades";
+            tabArchivo.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(802, 631);
-            Controls.Add(btnEliminarMateria);
-            Controls.Add(btnEliminarSemestre);
-            Controls.Add(grpOrden);
-            Controls.Add(dgtDatosMaterias);
-            Controls.Add(lstSemestres);
-            Controls.Add(grpMateria);
-            Controls.Add(grpDatosSemestre);
+            ClientSize = new Size(765, 526);
+            Controls.Add(tabOrganizador);
+            Margin = new Padding(3, 2, 3, 2);
             Name = "Form1";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Captura Calificacion";
@@ -267,6 +321,8 @@
             ((System.ComponentModel.ISupportInitialize)dgtDatosMaterias).EndInit();
             grpOrden.ResumeLayout(false);
             grpOrden.PerformLayout();
+            tabOrganizador.ResumeLayout(false);
+            tabDatos.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -291,5 +347,8 @@
         private RadioButton radAscendente;
         private Button btnEliminarSemestre;
         private Button btnEliminarMateria;
+        private TabControl tabOrganizador;
+        private TabPage tabDatos;
+        private TabPage tabArchivo;
     }
 }
