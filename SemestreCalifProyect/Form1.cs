@@ -4,7 +4,7 @@ namespace SemestreCalifProyect
 {
     public partial class Form1 : Form
     {
-        public static string NombreArchivo = "C:\\Users\\DELL\\Desktop\\Proycto\\Manuel492-6\\Informacion\\informacion.txt";
+        public static string NombreArchivo = "C:\\Users\\DELL\\Desktop\\Proycto\\Manuel492-6\\SemestreCalifProyect\\Informacion\\informacion.txt";
 
         miArchivo<Semestre> miArchivo = new miArchivo<Semestre>(NombreArchivo);
 
