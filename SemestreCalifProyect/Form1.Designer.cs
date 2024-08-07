@@ -1,6 +1,6 @@
 ﻿namespace SemestreCalifProyect
 {
-    partial class Form1
+    partial class FormCapturaDeCalificaciones
     {
         /// <summary>
         ///  Required designer variable.
@@ -340,14 +340,14 @@
             btnEliminarArchivo.UseVisualStyleBackColor = true;
             btnEliminarArchivo.Click += btnEliminarArchivo_Click;
             // 
-            // Form1
+            // FormCapturaDeCalificaciones
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(765, 526);
             Controls.Add(tabOrganizador);
             Margin = new Padding(3, 2, 3, 2);
-            Name = "Form1";
+            Name = "FormCapturaDeCalificaciones";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Captura Calificacion";
             Load += Form1_Load;

@@ -2,7 +2,7 @@ using ExamenNivelacionArchivos;
 
 namespace SemestreCalifProyect
 {
-    public partial class Form1 : Form
+    public partial class FormCapturaDeCalificaciones : Form
     {
         public static string NombreArchivo = "C:\\Users\\DELL\\Desktop\\Proycto\\Manuel492-6\\SemestreCalifProyect\\Informacion\\informacion.txt";
 
@@ -21,7 +21,7 @@ namespace SemestreCalifProyect
             miArchivo.CerrarArchivo();
         }
 
-        public Form1()
+        public FormCapturaDeCalificaciones()
         {
             InitializeComponent();
 
