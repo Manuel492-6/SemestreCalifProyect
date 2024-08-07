@@ -1,15 +1,45 @@
+using ExamenNivelacionArchivos;
+
 namespace SemestreCalifProyect
 {
     public partial class Form1 : Form
     {
+        public static string NombreArchivo = "C:\\Users\\DELL\\Desktop\\Proycto\\Manuel492-6\\Informacion\\informacion.txt";
+
+        miArchivo<Semestre> miArchivo = new miArchivo<Semestre>(NombreArchivo);
+
+        private void InicializarArchivo()
+        {
+            miArchivo.HacerModoLectura();
+            Semestre miSemestre = new Semestre();
+
+            while (!miArchivo.FinArchivo)
+            {
+                miSemestre = miArchivo.LeerObjeto();
+                lstSemestres.Items.Add(miSemestre);
+            }
+            miArchivo.CerrarArchivo();
+        }
+
         public Form1()
         {
             InitializeComponent();
+
+
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
             cboNumSemestre.SelectedIndex = 0;
+            if (File.Exists(NombreArchivo))
+            {
+                InicializarArchivo();
+            }
+            else
+            {
+                miArchivo.HacerModoEscritura();
+                miArchivo.CerrarArchivo();
+            }
         }
 
         private void btnAgregarSemestre_Click(object sender, EventArgs e)
@@ -21,7 +51,7 @@ namespace SemestreCalifProyect
             {
                 if (i.NumeroSemestre == miSemestre.NumeroSemestre)
                 {
-                    MessageBox.Show("Este semestre ya esta agregado", "Error");
+                    DialogResult Mensaje = MessageBox.Show("Este semestre ya esta agregado", "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     return;
                 }
             }
@@ -41,8 +71,21 @@ namespace SemestreCalifProyect
             }
 
             Materia miMateria = new Materia();
-            miMateria.NombreMateria = txtNombreMateria.Text;
-            miMateria.Calificacion = Convert.ToDouble(txtCalificacion.Text);
+            try
+            {
+                miMateria.NombreMateria = txtNombreMateria.Text;
+                miMateria.Calificacion = Convert.ToDouble(txtCalificacion.Text);
+            }
+            catch (FormatException ex)
+            {
+                MessageBox.Show("Usted a escrito en otro tipo de dato en este campo", "Error");
+                return;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error");
+                return;
+            }
 
             SemestreSeleccionado.AgregarMateria(miMateria);
 
@@ -57,11 +100,13 @@ namespace SemestreCalifProyect
                 dgtDatosMaterias.Rows.Add(x.NombreMateria, x.Calificacion);
             }
             dgtDatosMaterias.Rows.Add("Total", SemestreSeleccionado.PromedioMaterias());
+
+            txtNombreMateria.Focus();
         }
 
         private void lstSemestres_Click(object sender, EventArgs e)
         {
-            double SumaPromedio = 0, numDatos = 0;
+            int Datos = 0;
             Semestre SemestreSeleccionado = new Semestre();
             SemestreSeleccionado = (Semestre)lstSemestres.SelectedItem;
 
@@ -78,8 +123,13 @@ namespace SemestreCalifProyect
             foreach (Materia x in SemestreSeleccionado)
             {
                 dgtDatosMaterias.Rows.Add(x.NombreMateria, x.Calificacion);
+                Datos++;
             }
-            dgtDatosMaterias.Rows.Add("Total", SemestreSeleccionado.PromedioMaterias());
+            if (!(Datos == 0))
+            {
+                dgtDatosMaterias.Rows.Add("Total", SemestreSeleccionado.PromedioMaterias());
+            }
+
 
         }
 
@@ -134,6 +184,56 @@ namespace SemestreCalifProyect
             {
                 MessageBox.Show("Usted no ha seleccionado ninguna materia", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
+        }
+
+        private void btnGuardarArchivo_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (File.Exists(NombreArchivo)) {
+
+                    miArchivo.EliminarArchivo();
+                    miArchivo.HacerModoEscritura();
+
+                    if (lstSemestres.Items.Count == 0) { MessageBox.Show("Usted no tiene ningun dato", "Mensaje"); miArchivo.CerrarArchivo(); return; }
+
+                    foreach (Semestre miSemestre in lstSemestres.Items)
+                    {
+                        miArchivo.AgregarObjeto(miSemestre);
+                    }
+                    DialogResult Mensaje = MessageBox.Show("Se han agregado correctamente", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    miArchivo.CerrarArchivo();
+                
+                }
+                else
+                {
+                    throw new Exception("");   
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error");
+            }
+
+        }
+
+        private void btnEliminarArchivo_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                DialogResult Mensaje = MessageBox.Show("Deseas Eliminar este archivo?", "Mensaje", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
+                if (Mensaje == DialogResult.OK) 
+                { 
+                    miArchivo.EliminarArchivo();
+                    MessageBox.Show("Se ha eliminado el archivo", "Mensaje");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message,"Mensaje");
+            }
+            
+            
         }
     }
 }

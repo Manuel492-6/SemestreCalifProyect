@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace SemestreCalifProyect
 {
+	[Serializable]
 	internal class Semestre
 	{
 		private int _intNumeroSemestre;

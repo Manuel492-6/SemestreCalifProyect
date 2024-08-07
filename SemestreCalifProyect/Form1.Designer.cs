@@ -50,12 +50,17 @@
             tabOrganizador = new TabControl();
             tabDatos = new TabPage();
             tabArchivo = new TabPage();
+            groupBox1 = new GroupBox();
+            btnGuardarArchivo = new Button();
+            btnEliminarArchivo = new Button();
             grpDatosSemestre.SuspendLayout();
             grpMateria.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgtDatosMaterias).BeginInit();
             grpOrden.SuspendLayout();
             tabOrganizador.SuspendLayout();
             tabDatos.SuspendLayout();
+            tabArchivo.SuspendLayout();
+            groupBox1.SuspendLayout();
             SuspendLayout();
             // 
             // grpDatosSemestre
@@ -295,6 +300,7 @@
             // 
             // tabArchivo
             // 
+            tabArchivo.Controls.Add(groupBox1);
             tabArchivo.Location = new Point(4, 24);
             tabArchivo.Name = "tabArchivo";
             tabArchivo.Padding = new Padding(3);
@@ -302,6 +308,37 @@
             tabArchivo.TabIndex = 1;
             tabArchivo.Text = "Archivo Propiedades";
             tabArchivo.UseVisualStyleBackColor = true;
+            // 
+            // groupBox1
+            // 
+            groupBox1.Controls.Add(btnGuardarArchivo);
+            groupBox1.Controls.Add(btnEliminarArchivo);
+            groupBox1.Location = new Point(140, 62);
+            groupBox1.Name = "groupBox1";
+            groupBox1.Size = new Size(481, 228);
+            groupBox1.TabIndex = 6;
+            groupBox1.TabStop = false;
+            groupBox1.Text = "Propiedades";
+            // 
+            // btnGuardarArchivo
+            // 
+            btnGuardarArchivo.Location = new Point(124, 47);
+            btnGuardarArchivo.Name = "btnGuardarArchivo";
+            btnGuardarArchivo.Size = new Size(203, 52);
+            btnGuardarArchivo.TabIndex = 3;
+            btnGuardarArchivo.Text = "Guardar Datos Del  Archivo";
+            btnGuardarArchivo.UseVisualStyleBackColor = true;
+            btnGuardarArchivo.Click += btnGuardarArchivo_Click;
+            // 
+            // btnEliminarArchivo
+            // 
+            btnEliminarArchivo.Location = new Point(124, 114);
+            btnEliminarArchivo.Name = "btnEliminarArchivo";
+            btnEliminarArchivo.Size = new Size(203, 52);
+            btnEliminarArchivo.TabIndex = 5;
+            btnEliminarArchivo.Text = "Eliminar Archivo";
+            btnEliminarArchivo.UseVisualStyleBackColor = true;
+            btnEliminarArchivo.Click += btnEliminarArchivo_Click;
             // 
             // Form1
             // 
@@ -323,6 +360,8 @@
             grpOrden.PerformLayout();
             tabOrganizador.ResumeLayout(false);
             tabDatos.ResumeLayout(false);
+            tabArchivo.ResumeLayout(false);
+            groupBox1.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -350,5 +389,8 @@
         private TabControl tabOrganizador;
         private TabPage tabDatos;
         private TabPage tabArchivo;
+        private Button btnEliminarArchivo;
+        private Button btnGuardarArchivo;
+        private GroupBox groupBox1;
     }
 }

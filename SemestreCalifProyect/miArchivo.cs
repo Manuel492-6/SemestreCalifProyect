@@ -38,6 +38,7 @@ namespace ExamenNivelacionArchivos
         private void Crear()
         {
             this.Flujo = new FileStream(NombreArchivo, FileMode.Create);
+            
         }
 
         public miArchivo(string strArchivo)
@@ -104,7 +105,7 @@ namespace ExamenNivelacionArchivos
             }
             else
             {
-                throw new Exception("No se puede eliminar");
+                throw new Exception("No se puede eliminar porque no existe");
             }
         }
 
