@@ -40,6 +40,21 @@ namespace SemestreCalifProyect
                 miArchivo.HacerModoEscritura();
                 miArchivo.CerrarArchivo();
             }
+            SemestreCalificacionTotal();
+        }
+
+        public delegate double Operacion();
+        
+
+        private void SemestreCalificacionTotal()
+        {
+            Operacion Suma = () => { double suma = 0; foreach (Semestre miSemestre in lstSemestres.Items) { suma += miSemestre.PromedioMaterias(); }  return Math.Round(suma/lstSemestres.Items.Count,2);   };
+            
+            label5.Text = (lstSemestres.Items.Count == 0) ? "" : (lstSemestres.Items.Count.ToString());
+            label7.Text = (lstSemestres.Items.Count == 0)? "" : Suma().ToString(); 
+            label5.Visible = true;
+            label7.Visible = true;
+  
         }
 
         private void btnAgregarSemestre_Click(object sender, EventArgs e)

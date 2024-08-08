@@ -53,6 +53,10 @@
             groupBox1 = new GroupBox();
             btnGuardarArchivo = new Button();
             btnEliminarArchivo = new Button();
+            label4 = new Label();
+            label5 = new Label();
+            label6 = new Label();
+            label7 = new Label();
             grpDatosSemestre.SuspendLayout();
             grpMateria.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgtDatosMaterias).BeginInit();
@@ -275,7 +279,7 @@
             // 
             tabOrganizador.Controls.Add(tabDatos);
             tabOrganizador.Controls.Add(tabArchivo);
-            tabOrganizador.Location = new Point(12, 12);
+            tabOrganizador.Location = new Point(12, 37);
             tabOrganizador.Name = "tabOrganizador";
             tabOrganizador.SelectedIndex = 0;
             tabOrganizador.Size = new Size(727, 483);
@@ -340,11 +344,53 @@
             btnEliminarArchivo.UseVisualStyleBackColor = true;
             btnEliminarArchivo.Click += btnEliminarArchivo_Click;
             // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Location = new Point(286, 19);
+            label4.Name = "label4";
+            label4.Size = new Size(127, 15);
+            label4.TabIndex = 8;
+            label4.Text = "Semestres Capturados:";
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Location = new Point(428, 19);
+            label5.Name = "label5";
+            label5.Size = new Size(38, 15);
+            label5.TabIndex = 9;
+            label5.Text = "label5";
+            label5.Visible = false;
+            // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.Location = new Point(497, 19);
+            label6.Name = "label6";
+            label6.Size = new Size(100, 15);
+            label6.TabIndex = 10;
+            label6.Text = "Calificacion Total:";
+            // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.Location = new Point(624, 19);
+            label7.Name = "label7";
+            label7.Size = new Size(38, 15);
+            label7.TabIndex = 11;
+            label7.Text = "label7";
+            label7.Visible = false;
+            // 
             // FormCapturaDeCalificaciones
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(765, 526);
+            ClientSize = new Size(765, 545);
+            Controls.Add(label7);
+            Controls.Add(label6);
+            Controls.Add(label5);
+            Controls.Add(label4);
             Controls.Add(tabOrganizador);
             Margin = new Padding(3, 2, 3, 2);
             Name = "FormCapturaDeCalificaciones";
@@ -363,6 +409,7 @@
             tabArchivo.ResumeLayout(false);
             groupBox1.ResumeLayout(false);
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -392,5 +439,9 @@
         private Button btnEliminarArchivo;
         private Button btnGuardarArchivo;
         private GroupBox groupBox1;
+        private Label label4;
+        private Label label5;
+        private Label label6;
+        private Label label7;
     }
 }
