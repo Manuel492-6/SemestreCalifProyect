@@ -57,6 +57,8 @@
             label5 = new Label();
             label6 = new Label();
             label7 = new Label();
+            chkGuarddoAutomatico = new CheckBox();
+            btnSalir = new Button();
             grpDatosSemestre.SuspendLayout();
             grpMateria.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgtDatosMaterias).BeginInit();
@@ -279,7 +281,7 @@
             // 
             tabOrganizador.Controls.Add(tabDatos);
             tabOrganizador.Controls.Add(tabArchivo);
-            tabOrganizador.Location = new Point(12, 37);
+            tabOrganizador.Location = new Point(12, 43);
             tabOrganizador.Name = "tabOrganizador";
             tabOrganizador.SelectedIndex = 0;
             tabOrganizador.Size = new Size(727, 483);
@@ -287,6 +289,7 @@
             // 
             // tabDatos
             // 
+            tabDatos.Controls.Add(btnSalir);
             tabDatos.Controls.Add(grpDatosSemestre);
             tabDatos.Controls.Add(btnEliminarMateria);
             tabDatos.Controls.Add(lstSemestres);
@@ -382,11 +385,32 @@
             label7.Text = "label7";
             label7.Visible = false;
             // 
+            // chkGuarddoAutomatico
+            // 
+            chkGuarddoAutomatico.AutoSize = true;
+            chkGuarddoAutomatico.Location = new Point(73, 18);
+            chkGuarddoAutomatico.Name = "chkGuarddoAutomatico";
+            chkGuarddoAutomatico.Size = new Size(144, 19);
+            chkGuarddoAutomatico.TabIndex = 12;
+            chkGuarddoAutomatico.Text = "Guardado Automatico";
+            chkGuarddoAutomatico.UseVisualStyleBackColor = true;
+            // 
+            // btnSalir
+            // 
+            btnSalir.Location = new Point(458, 427);
+            btnSalir.Name = "btnSalir";
+            btnSalir.Size = new Size(203, 22);
+            btnSalir.TabIndex = 7;
+            btnSalir.Text = "Salir";
+            btnSalir.UseVisualStyleBackColor = true;
+            btnSalir.Click += btnSalir_Click;
+            // 
             // FormCapturaDeCalificaciones
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(765, 545);
+            Controls.Add(chkGuarddoAutomatico);
             Controls.Add(label7);
             Controls.Add(label6);
             Controls.Add(label5);
@@ -396,6 +420,7 @@
             Name = "FormCapturaDeCalificaciones";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Captura Calificacion";
+            FormClosing += FormCapturaDeCalificaciones_FormClosing;
             Load += Form1_Load;
             grpDatosSemestre.ResumeLayout(false);
             grpDatosSemestre.PerformLayout();
@@ -443,5 +468,7 @@
         private Label label5;
         private Label label6;
         private Label label7;
+        private CheckBox chkGuarddoAutomatico;
+        private Button btnSalir;
     }
 }

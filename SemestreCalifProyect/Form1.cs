@@ -1,10 +1,11 @@
 using ExamenNivelacionArchivos;
+using System.Reflection.Metadata.Ecma335;
 
 namespace SemestreCalifProyect
 {
     public partial class FormCapturaDeCalificaciones : Form
     {
-        public static string NombreArchivo = "C:\\Users\\DELL\\Desktop\\Proycto\\Manuel492-6\\SemestreCalifProyect\\Informacion\\informacion.txt";
+        public static string NombreArchivo = "C:\\Users\\DELL\\Desktop\\Proycto\\Manuel492-6\\SemestreCalifProyect\\Informacion\\informacion.dat";
 
         miArchivo<Semestre> miArchivo = new miArchivo<Semestre>(NombreArchivo);
 
@@ -44,17 +45,17 @@ namespace SemestreCalifProyect
         }
 
         public delegate double Operacion();
-        
+
 
         private void SemestreCalificacionTotal()
         {
-            Operacion Suma = () => { double suma = 0; foreach (Semestre miSemestre in lstSemestres.Items) { suma += miSemestre.PromedioMaterias(); }  return Math.Round(suma/lstSemestres.Items.Count,2);   };
-            
+            Operacion Suma = () => { double suma = 0; foreach (Semestre miSemestre in lstSemestres.Items) { suma += miSemestre.PromedioMaterias(); } return Math.Round(suma / lstSemestres.Items.Count, 2); };
+
             label5.Text = (lstSemestres.Items.Count == 0) ? "" : (lstSemestres.Items.Count.ToString());
-            label7.Text = (lstSemestres.Items.Count == 0)? "" : Suma().ToString(); 
+            label7.Text = (lstSemestres.Items.Count == 0) ? "" : Suma().ToString();
             label5.Visible = true;
             label7.Visible = true;
-  
+
         }
 
         private void btnAgregarSemestre_Click(object sender, EventArgs e)
@@ -205,7 +206,8 @@ namespace SemestreCalifProyect
         {
             try
             {
-                if (File.Exists(NombreArchivo)) {
+                if (File.Exists(NombreArchivo))
+                {
 
                     miArchivo.EliminarArchivo();
                     miArchivo.HacerModoEscritura();
@@ -218,11 +220,11 @@ namespace SemestreCalifProyect
                     }
                     DialogResult Mensaje = MessageBox.Show("Se han agregado correctamente", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     miArchivo.CerrarArchivo();
-                
+
                 }
                 else
                 {
-                    throw new Exception("");   
+                    throw new Exception("");
                 }
             }
             catch (Exception ex)
@@ -237,18 +239,34 @@ namespace SemestreCalifProyect
             try
             {
                 DialogResult Mensaje = MessageBox.Show("Deseas Eliminar este archivo?", "Mensaje", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
-                if (Mensaje == DialogResult.OK) 
-                { 
+                if (Mensaje == DialogResult.OK)
+                {
                     miArchivo.EliminarArchivo();
                     MessageBox.Show("Se ha eliminado el archivo", "Mensaje");
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message,"Mensaje");
+                MessageBox.Show(ex.Message, "Mensaje");
             }
-            
-            
+
+
+        }
+
+        private void FormCapturaDeCalificaciones_FormClosing(object sender, FormClosingEventArgs e)
+        {
+
+            DialogResult Mensaje = MessageBox.Show("Deseas salir del programa", "Salir", MessageBoxButtons.OKCancel, MessageBoxIcon.Exclamation);
+            if (Mensaje != DialogResult.OK)
+            {
+                e.Cancel = true;
+            }
+
+        }
+
+        private void btnSalir_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
         }
     }
 }
