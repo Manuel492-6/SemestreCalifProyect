@@ -1,4 +1,5 @@
 using ExamenNivelacionArchivos;
+using System.Reflection;
 using System.Reflection.Metadata.Ecma335;
 
 namespace SemestreCalifProyect
@@ -6,48 +7,54 @@ namespace SemestreCalifProyect
     public partial class FormCapturaDeCalificaciones : Form
     {
         public static string NombreArchivo = "C:\\Users\\DELL\\Desktop\\Proycto\\Manuel492-6\\SemestreCalifProyect\\Informacion\\informacion.dat";
+        public static string NombreArchivoConfiguracionGuardar = "C:\\Users\\DELL\\Desktop\\Proycto\\Manuel492-6\\SemestreCalifProyect\\Informacion\\informacionConfiguraciones.dat";
 
         miArchivo<Semestre> miArchivo = new miArchivo<Semestre>(NombreArchivo);
+        miArchivo<Configuraciones> miArchivoConfiguraciones = new miArchivo<Configuraciones>(NombreArchivoConfiguracionGuardar);
 
         private void InicializarArchivo()
         {
-            miArchivo.HacerModoLectura();
-            Semestre miSemestre = new Semestre();
-
-            while (!miArchivo.FinArchivo)
-            {
-                miSemestre = miArchivo.LeerObjeto();
-                lstSemestres.Items.Add(miSemestre);
-            }
-            miArchivo.CerrarArchivo();
-        }
-
-        public FormCapturaDeCalificaciones()
-        {
-            InitializeComponent();
-
-
-        }
-
-        private void Form1_Load(object sender, EventArgs e)
-        {
-            cboNumSemestre.SelectedIndex = 0;
             if (File.Exists(NombreArchivo))
             {
-                InicializarArchivo();
+                 miArchivo.HacerModoLectura();
+                Semestre miSemestre = new Semestre();
+
+                while (!miArchivo.FinArchivo)
+                {
+                    miSemestre = miArchivo.LeerObjeto();
+                   lstSemestres.Items.Add(miSemestre);
+                }
+                miArchivo.CerrarArchivo();
             }
             else
             {
                 miArchivo.HacerModoEscritura();
                 miArchivo.CerrarArchivo();
             }
-            SemestreCalificacionTotal();
+
+        }
+
+        public FormCapturaDeCalificaciones()
+        {
+            InitializeComponent();
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            cboNumSemestre.SelectedIndex = 0;
+
+            InicializarArchivo();
+
+            SemestreCalificacionTotalLabel();
+       
+            InicializarConfiguracion();
         }
 
         public delegate double Operacion();
 
 
-        private void SemestreCalificacionTotal()
+
+        private void SemestreCalificacionTotalLabel()
         {
             Operacion Suma = () => { double suma = 0; foreach (Semestre miSemestre in lstSemestres.Items) { suma += miSemestre.PromedioMaterias(); } return Math.Round(suma / lstSemestres.Items.Count, 2); };
 
@@ -72,7 +79,7 @@ namespace SemestreCalifProyect
                 }
             }
             lstSemestres.Items.Add(miSemestre);
-
+            SemestreCalificacionTotalLabel();
         }
 
         private void btnAgregarMateria_Click(object sender, EventArgs e)
@@ -118,6 +125,8 @@ namespace SemestreCalifProyect
             dgtDatosMaterias.Rows.Add("Total", SemestreSeleccionado.PromedioMaterias());
 
             txtNombreMateria.Focus();
+
+            SemestreCalificacionTotalLabel();
         }
 
         private void lstSemestres_Click(object sender, EventArgs e)
@@ -175,6 +184,8 @@ namespace SemestreCalifProyect
                 MessageBox.Show("Se ha Eliminado", "Eliminado", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             else { MessageBox.Show("Se ha cancelado", "Cancelado", MessageBoxButtons.OK, MessageBoxIcon.Information); }
+
+            SemestreCalificacionTotalLabel();
         }
 
         private void btnEliminarMateria_Click(object sender, EventArgs e)
@@ -200,6 +211,7 @@ namespace SemestreCalifProyect
             {
                 MessageBox.Show("Usted no ha seleccionado ninguna materia", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
+            SemestreCalificacionTotalLabel();
         }
 
         private void btnGuardarArchivo_Click(object sender, EventArgs e)
@@ -208,23 +220,11 @@ namespace SemestreCalifProyect
             {
                 if (File.Exists(NombreArchivo))
                 {
-
-                    miArchivo.EliminarArchivo();
-                    miArchivo.HacerModoEscritura();
-
-                    if (lstSemestres.Items.Count == 0) { MessageBox.Show("Usted no tiene ningun dato", "Mensaje"); miArchivo.CerrarArchivo(); return; }
-
-                    foreach (Semestre miSemestre in lstSemestres.Items)
-                    {
-                        miArchivo.AgregarObjeto(miSemestre);
-                    }
-                    DialogResult Mensaje = MessageBox.Show("Se han agregado correctamente", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                    miArchivo.CerrarArchivo();
-
+                    GuardarArchivoDatosSemestre();
                 }
-                else
+                if (File.Exists(NombreArchivoConfiguracionGuardar))
                 {
-                    throw new Exception("");
+                    GuardarConfiguraciones();
                 }
             }
             catch (Exception ex)
@@ -255,11 +255,18 @@ namespace SemestreCalifProyect
 
         private void FormCapturaDeCalificaciones_FormClosing(object sender, FormClosingEventArgs e)
         {
-
             DialogResult Mensaje = MessageBox.Show("Deseas salir del programa", "Salir", MessageBoxButtons.OKCancel, MessageBoxIcon.Exclamation);
             if (Mensaje != DialogResult.OK)
             {
                 e.Cancel = true;
+            }
+            GuardarConfiguraciones();
+            if (chkGuarddoAutomatico.Checked)
+            {
+                if (File.Exists(NombreArchivo))
+                {
+                    GuardarArchivoDatosSemestre();
+                }
             }
 
         }
@@ -267,6 +274,69 @@ namespace SemestreCalifProyect
         private void btnSalir_Click(object sender, EventArgs e)
         {
             Application.Exit();
+        }
+
+        private void GuardarConfiguraciones()
+        {
+            Configuraciones miConfiguraciones = new Configuraciones();
+            miConfiguraciones.GuardadoAutomatico = (chkGuarddoAutomatico.Checked) ? true : false;
+            miConfiguraciones.Orden = (radAscendente.Checked) ? 'A' : 'D';
+
+            miArchivoConfiguraciones.EliminarArchivo();
+            miArchivoConfiguraciones.HacerModoEscritura();
+            miArchivoConfiguraciones.AgregarObjeto(miConfiguraciones);
+            miArchivoConfiguraciones.CerrarArchivo();
+        }
+
+        private void InicializarConfiguracion()
+        {
+            try
+            {
+
+                if (File.Exists(NombreArchivoConfiguracionGuardar))
+                {
+                        Configuraciones miConfiguracion = new Configuraciones();
+                        miArchivoConfiguraciones.HacerModoLectura();
+                        while (!miArchivoConfiguraciones.FinArchivo)
+                        {
+                            miConfiguracion = miArchivoConfiguraciones.LeerObjeto();
+                        }
+                        chkGuarddoAutomatico.Checked = miConfiguracion.GuardadoAutomatico;
+                        switch (miConfiguracion.Orden)
+                        {
+                            case 'A':
+                                radAscendente.Checked = true;
+                                break;
+                            case 'D':
+                                radDescendente.Checked = true;
+                                break;
+                        }
+                    
+                }
+                else
+                {
+                    miArchivoConfiguraciones.HacerModoEscritura();
+                }
+            }
+            catch (Exception ex) { }
+            finally { miArchivoConfiguraciones.CerrarArchivo(); }
+        }
+
+        private void GuardarArchivoDatosSemestre()
+        {
+            miArchivo.EliminarArchivo();
+            miArchivo.HacerModoEscritura();
+
+            if (lstSemestres.Items.Count == 0) { MessageBox.Show("Usted no tiene ningun dato", "Mensaje"); miArchivo.CerrarArchivo(); return; }
+
+            foreach (Semestre miSemestre in lstSemestres.Items)
+            {
+                miArchivo.AgregarObjeto(miSemestre);
+            }
+            DialogResult Mensaje = MessageBox.Show("Se ha guardado correctamente", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            miArchivo.CerrarArchivo();
+
+
         }
     }
 }
