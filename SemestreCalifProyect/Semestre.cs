@@ -53,7 +53,7 @@ namespace SemestreCalifProyect
 
 		public void Descendente()
 		{
-			_ListaMaterias.Sort(delegate (Materia Materia1, Materia Materia2)  { return Materia2.CompareTo(Materia1);	});
+			_ListaMaterias.Sort(delegate (Materia Materia1, Materia Materia2)  { return Materia2.Calificacion.CompareTo(Materia1.Calificacion);	});
 		}
 
 		public void EliminarMateria(Materia MateriaEliminar)

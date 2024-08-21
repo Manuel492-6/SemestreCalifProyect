@@ -49,6 +49,7 @@
             btnEliminarMateria = new Button();
             tabOrganizador = new TabControl();
             tabDatos = new TabPage();
+            btnSalir = new Button();
             tabArchivo = new TabPage();
             groupBox1 = new GroupBox();
             btnGuardarArchivo = new Button();
@@ -58,7 +59,6 @@
             label6 = new Label();
             label7 = new Label();
             chkGuarddoAutomatico = new CheckBox();
-            btnSalir = new Button();
             grpDatosSemestre.SuspendLayout();
             grpMateria.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgtDatosMaterias).BeginInit();
@@ -305,6 +305,16 @@
             tabDatos.Text = "Datos";
             tabDatos.UseVisualStyleBackColor = true;
             // 
+            // btnSalir
+            // 
+            btnSalir.Location = new Point(458, 427);
+            btnSalir.Name = "btnSalir";
+            btnSalir.Size = new Size(203, 22);
+            btnSalir.TabIndex = 7;
+            btnSalir.Text = "Salir";
+            btnSalir.UseVisualStyleBackColor = true;
+            btnSalir.Click += btnSalir_Click;
+            // 
             // tabArchivo
             // 
             tabArchivo.Controls.Add(groupBox1);
@@ -395,16 +405,6 @@
             chkGuarddoAutomatico.Text = "Guardado Automatico";
             chkGuarddoAutomatico.UseVisualStyleBackColor = true;
             // 
-            // btnSalir
-            // 
-            btnSalir.Location = new Point(458, 427);
-            btnSalir.Name = "btnSalir";
-            btnSalir.Size = new Size(203, 22);
-            btnSalir.TabIndex = 7;
-            btnSalir.Text = "Salir";
-            btnSalir.UseVisualStyleBackColor = true;
-            btnSalir.Click += btnSalir_Click;
-            // 
             // FormCapturaDeCalificaciones
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -417,6 +417,7 @@
             Controls.Add(label4);
             Controls.Add(tabOrganizador);
             Margin = new Padding(3, 2, 3, 2);
+            MaximizeBox = false;
             Name = "FormCapturaDeCalificaciones";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Captura Calificacion";

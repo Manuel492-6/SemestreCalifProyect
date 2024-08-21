@@ -6,8 +6,8 @@ namespace SemestreCalifProyect
 {
     public partial class FormCapturaDeCalificaciones : Form
     {
-        public static string NombreArchivo = "C:\\Users\\DELL\\Desktop\\Proycto\\Manuel492-6\\SemestreCalifProyect\\Informacion\\informacion.dat";
-        public static string NombreArchivoConfiguracionGuardar = "C:\\Users\\DELL\\Desktop\\Proycto\\Manuel492-6\\SemestreCalifProyect\\Informacion\\informacionConfiguraciones.dat";
+        public static string NombreArchivo = "C:\\Users\\DELL\\Desktop\\Pyts\\Proycto\\Manuel492-6\\SemestreCalifProyect\\Informacion\\informacion.dat";
+        public static string NombreArchivoConfiguracionGuardar = "C:\\Users\\DELL\\Desktop\\Pyts\\Proycto\\Manuel492-6\\SemestreCalifProyect\\Informacion\\informacionConfiguraciones.dat";
 
         miArchivo<Semestre> miArchivo = new miArchivo<Semestre>(NombreArchivo);
         miArchivo<Configuraciones> miArchivoConfiguraciones = new miArchivo<Configuraciones>(NombreArchivoConfiguracionGuardar);
