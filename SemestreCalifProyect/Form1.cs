@@ -6,7 +6,7 @@ namespace SemestreCalifProyect
 {
     public partial class FormCapturaDeCalificaciones : Form
     {
-        public static string NombreArchivo = "C:\\Users\\DELL\\Desktop\\Pyts\\Proycto\\Manuel492-6\\SemestreCalifProyect\\Informacion\\informacion.dat";
+        public static string NombreArchivo = "C:\\Users\\DELL\\Desktop\\Pyts\\Proycto\\Manuel492-6\\SemestreCalifProyect\\Informacion\\I.dat";
         public static string NombreArchivoConfiguracionGuardar = "C:\\Users\\DELL\\Desktop\\Pyts\\Proycto\\Manuel492-6\\SemestreCalifProyect\\Informacion\\informacionConfiguraciones.dat";
 
         miArchivo<Semestre> miArchivo = new miArchivo<Semestre>(NombreArchivo);
@@ -222,6 +222,12 @@ namespace SemestreCalifProyect
                 {
                     GuardarArchivoDatosSemestre();
                 }
+                else
+                {
+                    miArchivo.HacerModoEscritura();
+                    miArchivo.CerrarArchivo();
+                    GuardarArchivoDatosSemestre();
+                }
                 if (File.Exists(NombreArchivoConfiguracionGuardar))
                 {
                     GuardarConfiguraciones();
@@ -259,12 +265,19 @@ namespace SemestreCalifProyect
             if (Mensaje != DialogResult.OK)
             {
                 e.Cancel = true;
+                return;
             }
             GuardarConfiguraciones();
             if (chkGuarddoAutomatico.Checked)
             {
                 if (File.Exists(NombreArchivo))
                 {
+                    GuardarArchivoDatosSemestre();
+                }
+                else
+                {
+                    miArchivo.HacerModoEscritura();
+                    miArchivo.CerrarArchivo();
                     GuardarArchivoDatosSemestre();
                 }
             }
