@@ -54,6 +54,7 @@ namespace SemestreCalifProyect
             InicializarConfiguracion();
 
             dgtDatosMaterias.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            
             dgtDatosMaterias.MultiSelect = false;
         }
 
