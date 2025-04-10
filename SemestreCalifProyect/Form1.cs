@@ -6,22 +6,26 @@ namespace SemestreCalifProyect
 {
     public partial class FormCapturaDeCalificaciones : Form
     {
-        public static string NombreArchivo = "C:\\Users\\DELL\\Desktop\\Pyts\\Proycto\\Manuel492-6\\SemestreCalifProyect\\Informacion\\I.dat";
+
+
+        public static string NombreArchivo = "C:\\Users\\DELL\\Desktop\\Pyts\\Proycto\\Manuel492-6\\SemestreCalifProyect\\Informacion\\informacion.dat";
         public static string NombreArchivoConfiguracionGuardar = "C:\\Users\\DELL\\Desktop\\Pyts\\Proycto\\Manuel492-6\\SemestreCalifProyect\\Informacion\\informacionConfiguraciones.dat";
 
         miArchivo<Semestre> miArchivo = new miArchivo<Semestre>(NombreArchivo);
         miArchivo<Configuraciones> miArchivoConfiguraciones = new miArchivo<Configuraciones>(NombreArchivoConfiguracionGuardar);
 
+        
+
         private void InicializarArchivo()
         {
             if (File.Exists(NombreArchivo))
             {
-                 miArchivo.HacerModoLectura();
+                miArchivo.HacerModoLectura();
                 Semestre miSemestre = new Semestre();
 
                 while (!miArchivo.FinArchivo)
                 {
-                    miSemestre = miArchivo.LeerObjeto();
+                   miSemestre = miArchivo.LeerObjeto();
                    lstSemestres.Items.Add(miSemestre);
                 }
                 miArchivo.CerrarArchivo();
@@ -48,6 +52,9 @@ namespace SemestreCalifProyect
             SemestreCalificacionTotalLabel();
        
             InicializarConfiguracion();
+
+            dgtDatosMaterias.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgtDatosMaterias.MultiSelect = false;
         }
 
         public delegate double Operacion();

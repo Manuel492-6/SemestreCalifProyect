@@ -7,8 +7,12 @@ using System.Threading.Tasks;
 
 namespace ExamenNivelacionArchivos
 {
+    public delegate void Operacion();
+    public delegate void NotificarCreacionEventHandler(Operacion miOperacion);
     internal class miArchivo<Tipo>
     {
+        public event NotificarCreacionEventHandler NotificarCreacion;
+
         private string _strNombreArchivo;
 
         public string NombreArchivo
@@ -38,7 +42,6 @@ namespace ExamenNivelacionArchivos
         private void Crear()
         {
             this.Flujo = new FileStream(NombreArchivo, FileMode.Create);
-            
         }
 
         public miArchivo(string strArchivo)
@@ -76,7 +79,9 @@ namespace ExamenNivelacionArchivos
             }
             else
             {
+                //this.NotificarCreacion(Crear);
                 Crear();
+                
             }
 
         }
@@ -108,7 +113,6 @@ namespace ExamenNivelacionArchivos
                 throw new Exception("No se puede eliminar porque no existe");
             }
         }
-
 
     }
 
